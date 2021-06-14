@@ -8,6 +8,9 @@ import { TableUsersComponent } from './table-users/table-users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewModalComponent } from './new-modal/new-modal.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { UpdateModalComponent } from './update-modal/update-modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,14 +18,17 @@ import { NewModalComponent } from './new-modal/new-modal.component';
   declarations: [
     AppComponent,
     TableUsersComponent,
-    NewModalComponent
+    NewModalComponent,
+    DeleteModalComponent,
+    UpdateModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

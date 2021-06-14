@@ -10,9 +10,8 @@ import { faEdit } from '@fortawesome/free-regular-svg-icons'
 })
 export class TableUsersComponent {
 
-  page=10;
-  USERS: UserModule[] = [];
-  users = this.USERS;
+  users: UserModule[] = [];
+
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
 
@@ -25,5 +24,23 @@ export class TableUsersComponent {
   public getAllUsers() {
     let resp = this.userService.getUsers();
     resp.subscribe(user => this.users = user as UserModule[]);
+  }
+
+  public onDelete(id: number, isDeleted = false) {
+    if (isDeleted) {
+      this.userService.deleteUser(id).subscribe(() => {
+        const index = this.users.findIndex(user => user.id === id);
+        if (index >= 0) {
+          this.users.splice(index, 1);
+        }
+      });
+    }
+  }
+
+  public addNewUser(user: UserModule) {
+    if (user) {
+      this.users.push(user);
+    }
+    return;
   }
 }

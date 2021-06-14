@@ -1,12 +1,12 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">New User</h4>
+      <h4 class="modal-title" id="modal-basic-title">Update user</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form autocomplete="off" #newUser="ngForm" (ngSubmit)="onAddUser(newUser.value)">
+      <form autocomplete="off" #newUser="ngForm">
         <div class="mb-3">
           <label for="firstName" class="form-label">First name</label>
           <input type="text" class="form-control" id="firstName" name="firstName" ngModel>
@@ -41,4 +41,4 @@
     </div>
   </ng-template>
   
-  <button class="btn btn-lg btn-dark px-5" (click)="open(content)">Add User</button>
+  <button class="btn p-0" (click)="open(content)"><fa-icon [icon]="faEdit"></fa-icon></button>
