@@ -6,36 +6,36 @@
       </button>
     </div>
     <div class="modal-body">
-      <form autocomplete="off" #newUser="ngForm">
+      <form autocomplete="off" #editUser="ngForm" (ngSubmit)="onUpdateUser(editUser.value)">
         <div class="mb-3">
           <label for="firstName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="firstName" name="firstName" ngModel>
+          <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.first_name">
         </div>
         <div class="mb-3">
           <label for="lastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="lastName" name="lastName" ngModel>
+          <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.last_name">
         </div>
         <div class="mb-3">
           <label for="gender" class="form-label">Choose gender</label>
-          <select class="form-select form-control" name="gender" ngModel>
+          <select class="form-select form-control" name="gender" [ngModel]="user.gender">
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="email" ngModel>
+          <input type="email" class="form-control" id="email" name="email" [ngModel]="user.email">
         </div>
         <div class="mb-3">
           <label for="phoneNumber" class="form-label">Phone number</label>
-          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" ngModel>
+          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [ngModel]="user.phone_number">
         </div>
         <div class="mb-3">
           <label for="homeTown" class="form-label">Home town</label>
-          <input type="text" class="form-control" id="homeTown" name="homeTown" ngModel>
+          <input type="text" class="form-control" id="homeTown" name="homeTown" [ngModel]="user.home_town">
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark">Save</button>
+          <button type="submit" class="btn btn-outline-dark">Update</button>
         </div>
       </form>
     </div>

@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 export class DeleteModalComponent {
 
   @Output() deleted = new EventEmitter(false);
+  
   faTrashAlt = faTrashAlt;
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, private userService: UserService) {

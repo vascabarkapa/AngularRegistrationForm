@@ -11,8 +11,7 @@ import { NewModalComponent } from './new-modal/new-modal.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { UpdateModalComponent } from './update-modal/update-modal.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

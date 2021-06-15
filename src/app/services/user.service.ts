@@ -16,19 +16,23 @@ export class UserService {
     return this.http.get(apiUrl + "/users");
   }
 
-  deleteUser(id: number) {
+  public deleteUser(id: number) {
     return this.http.delete(apiUrl + "/users/" + id);
   }
 
-  updateUser(user: UserModule) {
-    return this.http.put(apiUrl + "/users/" + user.id, user);
-  }
-
-  getUser(id: number) {
+  public getUser(id: number) {
     return this.http.get(apiUrl + "/users/" + id);
   }
 
-  addUser(user: UserModule) {
+  public addUser(user: UserModule) {
     return this.http.post(apiUrl + "/users", user);
+  }
+  
+  public getOneUser(id: number) {
+    return this.http.get(apiUrl + "/users/" + id);
+  }
+
+  public editOneUser(user: UserModule, id: number) {
+    return this.http.put(apiUrl + "/users/" + id, user);
   }
 }

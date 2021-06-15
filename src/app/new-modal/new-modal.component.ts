@@ -10,7 +10,6 @@ import { UserModule } from '../user.module';
 })
 export class NewModalComponent implements OnInit {
 
-  user: UserModule;
   @Output() newUser = new EventEmitter();
   constructor(config: NgbModalConfig, private modalService: NgbModal, private userService: UserService) {
 

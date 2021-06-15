@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { UserModule } from '../user.module';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
@@ -12,8 +12,13 @@ export class TableUsersComponent {
 
   users: UserModule[] = [];
 
+  collectionSize: number;
+
   faTrashAlt = faTrashAlt;
   faEdit = faEdit;
+
+  page = 1;
+  pageSize = 10;
 
   constructor(private userService: UserService) { }
 
@@ -21,9 +26,18 @@ export class TableUsersComponent {
     this.getAllUsers();
   }
 
+  refreshCountries() {
+    this.users = this.users
+      .map((user, i) => ({id: i + 1, ...user}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
   public getAllUsers() {
-    let resp = this.userService.getUsers();
-    resp.subscribe(user => this.users = user as UserModule[]);
+    this.userService.getUsers().subscribe((respnse: UserModule[]) => {
+      this.users = respnse,
+      this.collectionSize = this.users.length;
+    });
+    
   }
 
   public onDelete(id: number, isDeleted = false) {
@@ -40,6 +54,19 @@ export class TableUsersComponent {
   public addNewUser(user: UserModule) {
     if (user) {
       this.users.push(user);
+    }
+    return;
+  }
+
+  getSelectedUser(id: number) {
+    this.userService.getOneUser(id).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  public addEditUser(user: UserModule) {
+    if (user) {
+      this.getAllUsers();
     }
     return;
   }
