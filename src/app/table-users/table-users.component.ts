@@ -26,12 +26,6 @@ export class TableUsersComponent {
     this.getAllUsers();
   }
 
-  refreshCountries() {
-    this.users = this.users
-      .map((user, i) => ({id: i + 1, ...user}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
-
   public getAllUsers() {
     this.userService.getUsers().subscribe((respnse: UserModule[]) => {
       this.users = respnse,
@@ -48,12 +42,14 @@ export class TableUsersComponent {
           this.users.splice(index, 1);
         }
       });
+      this.getAllUsers();
     }
   }
 
   public addNewUser(user: UserModule) {
     if (user) {
       this.users.push(user);
+      this.getAllUsers();
     }
     return;
   }
