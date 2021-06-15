@@ -1,0 +1,75 @@
+<div class="card m-5">
+  <div class="card-header">
+      <h1 class="display-4"> Users
+        <span class="btn-group float-right">
+            <app-new-modal (newUser) = "addNewUser($event)"></app-new-modal>
+        </span>
+      </h1>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone number</th>
+        <th scope="col">Home town</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let i = index, let user of users | slice: (page-1) * pageSize : page * pageSize">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone_number }}</td>
+        <td>{{ user.home_town }}</td>
+        <td><app-update-modal [user] = "user" (editUser) = "addEditUser($event)"></app-update-modal></td>
+        <td><app-delete-modal (deleted) = "onDelete(user.id, $event)"></app-delete-modal></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-6">
+        <p>There are <strong>{{collectionSize}}</strong> users.</p>
+      </div>
+      <div class="col-6">
+        <div class="d-flex justify-content-end p-2">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="collectionSize">
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  ngb-pagination ::ng-deep a {
+    color: black !important;
+  }
+
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+  }
+
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+</style>

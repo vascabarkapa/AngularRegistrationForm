@@ -1,0 +1,44 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form autocomplete="off" #newUser="ngForm" (ngSubmit)="onAddUser(newUser.value)">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="gender" class="form-label">Choose gender</label>
+          <select class="form-select form-control" name="gender" ngModel>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone number</label>
+          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="homeTown" class="form-label">Home town</label>
+          <input type="text" class="form-control" id="homeTown" name="homeTown" ngModel>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark">Add</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-dark px-5" (click)="open(content)">Add User</button>
