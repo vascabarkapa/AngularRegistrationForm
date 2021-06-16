@@ -1,53 +1,104 @@
-<div class="card m-5">
+<div class="card mt-5 ml-5 mr-5 mb-4">
   <div class="card-header">
-      <h1 class="display-4"> Users
-        <span class="btn-group float-right">
-            <app-new-modal (newUser) = "addNewUser($event)"></app-new-modal>
+    <p class="display-4 searchSizeFont m-auto">Search users</p>
+  </div>
+
+  <form (ngSubmit)="search()">
+    <div class = "card-body">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-4">
+            <input class="form-control" type="text" name="firstName" [(ngModel)]="filter.firstName" placeholder="Enter first name to search..." />
+          </div>
+          <div class="col-4">
+            <input class="form-control" type="text" name="lastName" [(ngModel)]="filter.lastName" placeholder="Enter last name to search..." />
+          </div>
+          <div class="col-4">
+            <select class="form-select form-control" name="gender" [(ngModel)]="filter.gender"  placeholder="Enter first name to search...">
+              <option value="" hidden>Choose gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <input class="form-control" type="text" name="email" [(ngModel)]="filter.email" placeholder="Enter email name to search..." />
+        </div>
+        <div class="col-4">
+          <input class="form-control" type="text" name="phoneNumber" [(ngModel)]="filter.phoneNumber" placeholder="Enter phone number to search..." />
+        </div>
+        <div class="col-4">
+          <input class="form-control" type="text" name="homeTown" [(ngModel)]="filter.homeTown" placeholder="Enter home town to search..." />
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-footer d-flex justify-content-end">
+        <button class="btn btn-dark text-right px-4 mr-3" type="submit">Search</button>
+        <button class="btn btn-danger text-right px-4" (click)="resetSearch()">Reset</button>
+    </div>
+  </form>
+</div>
+
+<div class="card ml-5 mr-5 mb-5">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">
+        <h1 class="display-4"> Users</h1>
+      </div>
+      <div class="col-6">
+        <span class="float-right mt-3">
+          <app-new-modal (newUser)="addNewUser($event)"></app-new-modal>
         </span>
-      </h1>
+      </div>
+    </div>
   </div>
 
   <div class="card-body p-0">
     <table class="table table-striped">
       <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone number</th>
-        <th scope="col">Home town</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone number</th>
+          <th scope="col">Home town</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let i = index, let user of users | slice: (page-1) * pageSize : page * pageSize">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ user.first_name }}</td>
-        <td>{{ user.last_name }}</td>
-        <td>{{ user.gender }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.phone_number }}</td>
-        <td>{{ user.home_town }}</td>
-        <td><app-update-modal [user] = "user" (editUser) = "addEditUser($event)"></app-update-modal></td>
-        <td><app-delete-modal (deleted) = "onDelete(user.id, $event)"></app-delete-modal></td>
-      </tr>
+        <tr *ngFor="let i = index, let user of users | slice: (page-1) * pageSize : page * pageSize">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone_number }}</td>
+          <td>{{ user.home_town }}</td>
+          <td>
+            <app-update-modal [user]="user" (editUser)="addEditUser($event)"></app-update-modal>
+          </td>
+          <td>
+            <app-delete-modal (deleted)="onDelete(user.id, $event)"></app-delete-modal>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
+
   <div class="card-footer">
     <div class="row">
       <div class="col-6">
-        <p>There are <strong>{{collectionSize}}</strong> users.</p>
+        <p class="pt-3">There are <strong>{{users.length}}</strong> users.</p>
       </div>
       <div class="col-6">
         <div class="d-flex justify-content-end p-2">
-          <ngb-pagination
-            [(page)]="page"
-            [pageSize]="pageSize"
-            [collectionSize]="collectionSize">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="users.length">
           </ngb-pagination>
         </div>
       </div>

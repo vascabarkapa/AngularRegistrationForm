@@ -9,33 +9,51 @@
       <form autocomplete="off" #editUser="ngForm" (ngSubmit)="onUpdateUser(editUser.value)">
         <div class="mb-3">
           <label for="firstName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.first_name">
+          <input required type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.first_name" #firstName = "ngModel">
+          <div *ngIf="firstName.touched && !firstName.valid">
+            <div class="error" *ngIf="firstName.errors.required">Please enter a first name.</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="lastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.last_name">
+          <input required type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.last_name" #lastName = "ngModel">
+          <div *ngIf="lastName.touched && !lastName.valid">
+            <div class="error" *ngIf="lastName.errors.required">Please enter a last name.</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="gender" class="form-label">Choose gender</label>
-          <select class="form-select form-control" name="gender" [ngModel]="user.gender">
+          <select required class="form-select form-control" name="gender" [ngModel]="user.gender" #gender="ngModel">
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+          <div *ngIf="gender.touched && !gender.valid">
+            <div class="error" *ngIf="gender.errors.required">Please enter a gender.</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="email" [ngModel]="user.email">
+          <input required type="email" class="form-control" id="email" name="email" [ngModel]="user.email" #email="ngModel">
+          <div *ngIf="email.touched && !email.valid">
+            <div class="error" *ngIf="email.errors.required">Please enter an email.</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="phoneNumber" class="form-label">Phone number</label>
-          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [ngModel]="user.phone_number">
+          <input required type="text" class="form-control" id="phoneNumber" name="phoneNumber" [ngModel]="user.phone_number" #phoneNumber="ngModel">
+          <div *ngIf="phoneNumber.touched && !phoneNumber.valid">
+            <div class="error" *ngIf="phoneNumber.errors.required">Please enter a phone number.</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="homeTown" class="form-label">Home town</label>
-          <input type="text" class="form-control" id="homeTown" name="homeTown" [ngModel]="user.home_town">
+          <input required type="text" class="form-control" id="homeTown" name="homeTown" [ngModel]="user.home_town" #homeTown="ngModel">
+          <div *ngIf="homeTown.touched && !homeTown.valid">
+            <div class="error" *ngIf="homeTown.errors.required">Please enter a phone number.</div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark">Update</button>
+          <button [disabled]="!editUser.valid" type="submit" class="btn btn-outline-dark">Update</button>
         </div>
       </form>
     </div>

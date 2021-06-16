@@ -15,3 +15,12 @@
   a {
     color: black !important;
   }
+
+  .error {
+    color: red;
+    font-size: small;
+  }
+
+  .searchSizeFont {
+    font-size: 26px;
+  }
