@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+    color: black !important;
+  }
+
+  .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+  .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  a {
+    color: black !important;
+  }
